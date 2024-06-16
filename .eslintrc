@@ -4,6 +4,6 @@
         "node": true
     },
     "parser": "@babel/eslint-parser",
-    "rules": {},
+    "rules": { "no-unused-vars": "warn" },
     "extends": ["eslint:recommended", "plugin:react/recommended"]
 }

@@ -21,7 +21,7 @@ console.log(mode + ' mode');
 export default {
     entry: path.join(__dirname, 'src/index.js'),
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'build'),
         filename: 'bundle.js'
     },
     resolve: {
@@ -59,8 +59,8 @@ export default {
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' }),
         new MiniCssExtractPlugin({
-            filename: '[name].css', // Output filename for extracted CSS
-            chunkFilename: '[id].css', // Output filename for CSS chunks
+            filename: 'css/[name].css', // Output filename for extracted CSS
+            chunkFilename: 'css/[id].css', // Output filename for CSS chunks
         }),
         new CssMinimizerPlugin(),
         new ESLintPlugin(),
