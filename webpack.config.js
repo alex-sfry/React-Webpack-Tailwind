@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === 'development') {
     mode = 'development';
 }
 
+const optimize = mode === 'production' ? true : false;
 console.log(mode + ' mode');
 
 export default (env) => {
@@ -46,9 +47,28 @@ export default (env) => {
                     test: /\.css$/, // Matches all CSS files
                     use: [
                         mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    auto: true,
+                                    namedExport: false,
+                                }
+                            }
+                        },
+                        'postcss-loader',
+                        
+                    ],
+                    include: /\.module\.css$/,
+                },
+                {
+                    test: /\.css$/, // Matches all CSS files
+                    use: [
+                        mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
                         'css-loader',
                         'postcss-loader',
                     ],
+                    exclude: /\.module\.css$/,
                 },
                 {
                     test: /\.s[ac]ss$/i, // Matches all SCSS/Sass files with any extension (scss or sass)
@@ -70,7 +90,9 @@ export default (env) => {
             new CssMinimizerPlugin(),
             new Dotenv(),
             new ESLintPlugin({
-                threads: true
+                threads: true,
+                // quiet: true,
+                failOnWarning: false
             }),
         ],
         devServer: {
@@ -83,7 +105,7 @@ export default (env) => {
             }
         },
         optimization: {
-            minimize: true,
+            minimize: optimize,
             minimizer: [new TerserPlugin()],
         },
     }
