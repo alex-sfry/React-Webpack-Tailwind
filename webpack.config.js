@@ -28,7 +28,7 @@ export default (env) => {
         entry: path.join(__dirname, 'src/index.js'),
         output: {
             path: path.join(__dirname, 'build'),
-            filename: 'bundle-[hash].js',
+            filename: 'bundle-[fullhash].js',
             clean: optimize
         },
         resolve: {
@@ -111,7 +111,7 @@ export default (env) => {
         plugins: [
             new HtmlWebpackPlugin({ template: './public/index.html' }),
             new MiniCssExtractPlugin({
-                filename: 'css/[name][fullhash].css', // Output filename for extracted CSS
+                filename: 'css/[name]-[fullhash].css', // Output filename for extracted CSS
                 chunkFilename: 'css/[id].css', // Output filename for CSS chunks
             }),
             new CssMinimizerPlugin(),

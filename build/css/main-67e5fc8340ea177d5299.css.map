@@ -1,0 +1,1 @@
+{"version":3,"file":"css/main-67e5fc8340ea177d5299.css","mappings":"AAIA,KACI,wBACJ","sources":["webpack://reactwebpack/./src/App.css"],"sourcesContent":["/* @tailwind base;\n@tailwind components;\n@tailwind utilities; */\n\nbody {\n    background-color: aquamarine;\n}"],"names":[],"sourceRoot":""}
